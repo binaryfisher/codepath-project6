@@ -37,25 +37,6 @@ h1 {
   line-height: 1.1;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
 
 
 .attributes-panel{
@@ -111,17 +92,31 @@ button:focus-visible {
 }
 
 
-.dropbtn {
+.dropbtn, .button {
   background-color: #04AA6D;
   color: white;
   padding: 8px;
   font-size: 12px;
   border: none;
+  outline: none;
+  border-radius: 8px;
+}
+.button{
+  position: fixed;
+  top:20px;
+  right: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: #3e8e41;
+  color: white;
 }
 
 .dropdown {
   position: relative;
   display: inline-block;
+  
 }
 
 .dropdown-content {
@@ -146,7 +141,7 @@ button:focus-visible {
 
 .dropdown:hover .dropdown-content {display: block;}
 
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.dropdown:hover .dropbtn{background-color: #3e8e41;}
 
 
 
