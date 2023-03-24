@@ -1,5 +1,6 @@
 import React from "react";
 import { SearchResult } from "semantic-ui-react";
+import { Outlet, Link } from "react-router-dom";
 
 const ListContainer = ({list, filteredResult, searchInput}) =>{
     return(
@@ -10,6 +11,7 @@ const ListContainer = ({list, filteredResult, searchInput}) =>{
                     <div>Type</div>
                     <div>State</div>
                     <div>City</div>
+                    <div>Detail</div>
                 </div>
               
              
@@ -20,6 +22,7 @@ const ListContainer = ({list, filteredResult, searchInput}) =>{
                             <div>{item.brewery_type}</div>
                             <div>{item.state}</div>
                             <div>{item.city}</div>
+                            <div><Link to={item.id}>🔗</Link></div>
                         </div>
                    
                       ))
