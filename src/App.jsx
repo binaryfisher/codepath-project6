@@ -4,7 +4,7 @@ import ListContainer from './components/listContainer'
 import {Input} from "semantic-ui-react";
 import DropdownSelection from './components/dropDown';
 import './App.css'
-
+import TypeChart from './components/typeChart';
 
 
 function App() {
@@ -16,6 +16,7 @@ function App() {
   const [filteredResults, setFilteredResult] = useState([]);
   const [typeSelectOptions, setTypeSelectOptions] = useState([]);
   const [stateSelectOptions, setStateSelectOptions] = useState([]);
+  const [typeChartData, setTypeChartData] = useState([]);
 
   useEffect(() =>{
     const fetchData = async() =>{
@@ -25,23 +26,34 @@ function App() {
         let numOfTotal = data.length;
         let type = [];
         let state = [];
+        let typeChartData = {};
+        let typeChartDataArray = [];
        
         setList(data);
         setTotal(numOfTotal);
         data.forEach(element => {
           if(!type.includes(element.brewery_type)){
-            type.push(element.brewery_type);
+            
+            type.push(element.brewery_type );
+            typeChartData[element.brewery_type ] = 1;
+          }else{
+            typeChartData[element.brewery_type] = typeChartData[element.brewery_type] + 1;
           }
 
           if(!state.includes(element.state)){
           
            state.push(element.state)
-          }
-
-        
+          }        
        
         });
 
+        Object.keys(typeChartData).forEach((key)=>{
+          typeChartDataArray.push({name:key, amount:typeChartData[key]})
+        })
+        
+       setTypeChartData(typeChartDataArray)
+
+        
 
         setState(state);
         setType(type);
@@ -119,22 +131,30 @@ function App() {
         <AttributeCard name="State" value={state.length} />
       </div>
 
-      <div className='filter-panel'>
-        <input
-          type="text"
-          placeholder="Enter a name..."
-          onChange={(input) => searchItems(input.target.value)}
-        />
-
-        <DropdownSelection placeHolder="Select a type" options={typeSelectOptions} handleSelect={handleTypeSelect}/>
-
-        <DropdownSelection placeHolder="Select a State" options={stateSelectOptions} handleSelect={handleStateSelect}/>
-
-
-
-      </div>
+     
        
-      <ListContainer list={list} filteredResult={filteredResults} searchInput={searchInput}/>
+      <div className="content">
+        <div className="list-and-filters">
+          <div className='filter-panel'>
+            <input
+              type="text"
+              placeholder="Enter a name..."
+              onChange={(input) => searchItems(input.target.value)}
+            />
+
+            <DropdownSelection placeHolder="Select a type" options={typeSelectOptions} handleSelect={handleTypeSelect}/>
+
+            <DropdownSelection placeHolder="Select a State" options={stateSelectOptions} handleSelect={handleStateSelect}/>
+
+          </div>
+
+          <ListContainer list={list} filteredResult={filteredResults} searchInput={searchInput}/>
+        </div>
+
+        <div className="charts">
+          <TypeChart data={typeChartData} />
+        </div>
+      </div>
        
     </div>
   )

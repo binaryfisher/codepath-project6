@@ -26,7 +26,7 @@ a:hover {
 body {
   margin: 0;
   display: flex;
- justify-content: center;
+  justify-content: center;
   width: 100vw;
   min-height: 100vh;
   overflow-x: hidden;
@@ -60,11 +60,17 @@ h1 {
 
 }
 
+.content{
+  display: flex;
+  padding-top: 20px;
+
+}
+
 .list-container{
   display: flex;
  
   flex-direction: column;
-  margin-top: 20px;
+ 
   background-color: rgb(202, 195, 195);
   border-radius: 8px;
   gap: 5px;
@@ -72,6 +78,10 @@ h1 {
   min-width: 700px;
 
 
+}
+.chart-container{
+  font-size: 12px;
+  font-weight: 700;
 }
 .attribute-row, .list-header{
   display: grid;
@@ -86,9 +96,12 @@ h1 {
 
 .filter-panel{
   display: flex;
-  margin-top: 20px;
+  margin-bottom: 20px;
   justify-content: center;
   gap: 20px;
+}
+.charts{
+  margin-top: 50px;
 }
 
 
